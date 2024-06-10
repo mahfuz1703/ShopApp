@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | ShopApp</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container" style="margin-bottom: 50px;"> 
+        <img src="{{product.image.url}}" alt="{{product.name}}" width="300px" height="300px">
+        <h1>{{product.name}}</h1>
+        <p><b>Description:</b> {{product.description}}</p>
+        <p><b>Price:</b> {{product.price}} Taka</p>
+        {% if product.stock %}
+        <p><b>In Stock</b></p>
+        {% else %}
+        <p><b>Out of Stock</b></p>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -52,4 +52,9 @@ def signout(request):
     logout(request)
     return redirect('signup')
 
+def profile(request):
+    if request.user.is_authenticated:
+        return render(request, "authentication/user_profile.html", {'user':  request.user})
+    return redirect('signup')
+
 

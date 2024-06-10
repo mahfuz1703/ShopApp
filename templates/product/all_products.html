@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopApp | All Product</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h1>All products</h1>
+        </div>
+        <div class="row" style="justify-content: space-between; margin-bottom: 50px;">
+            {% for product in products %}
+            <div class="card col-3" style="width: 18rem;">
+                <img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}">
+                <div class="card-body">
+                <h5 class="card-title"><b>{{product.name}}</b></h5>
+                <p class="card-text"><b>Price:</b> {{product.price}} Taka</p>
+                {% if product.stock %}
+                    <p><b>In Stock</b></p>
+                {% else %}
+                    <p><b>Out of Stock</b></p>
+                {% endif %}
+                <a href="{% url 'product_details' product.id %}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -8,8 +8,12 @@
 </head>
 <body>
     {% block content %}
-    <h1>Welcome to ShopApp</h1>
-    <a href="{% url 'signout' %}">Logout</a>
+    <div class="container">
+        <h1>Welcome to ShopApp</h1>
+        <a href="{% url 'all_product' %}" class="btn btn-primary">Products</a>
+        <a href="{% url 'profile' %}" class="btn btn-primary">Profile</a>
+        <a href="{% url 'signout' %}" class="btn btn-primary">Log Out</a>
+    </div>
     {% endblock %}
 </body>
 </html>

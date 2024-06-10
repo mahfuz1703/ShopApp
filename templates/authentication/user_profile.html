@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <div style="text-align: center;"><h1> <b>Profile</b></h1></div>
+        <div>
+            <img src="{{user.photo.url}}" alt="{{user.name}}" width="200px" height="300px">
+            <h3><b>Username: </b>{{user.username}}</h3>
+            <h3><b>Email address: </b>{{user.email}}</h3>
+            <h3><b>Phone: </b>{{user.phone}}</h3>
+            <h3><b>Address: </b>{{user.address}}</h3>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
