@@ -21,6 +21,7 @@
                 <p class="card-text"><b>Price:</b> {{product.price}} Taka</p>
                 {% if product.stock %}
                     <p><b>In Stock</b></p>
+                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add To Cart</a>
                 {% else %}
                     <p><b>Out of Stock</b></p>
                 {% endif %}

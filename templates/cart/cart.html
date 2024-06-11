@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart | ShopApp</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <h1>My Cart</h1>
+        {% for item in items %}
+        <p>{{item.product.name}} x {{item.quantity}} = {% widthratio item.product.price 1 item.quantity %} TK
+            <a href="{% url 'increase_quantity' item.product.id %}" class="btn btn-primary" title="Increase Quantity">+</a>
+            <a href="{% url 'decrease_quantity' item.product.id %}" class="btn btn-secondary" title="Decrease Quantity">-</a>
+            <a href="{% url 'delete_to_cart' item.product.id %}" class="btn btn-danger" title="Remove Cart">x</a>
+        </p>
+        {% endfor %}
+        <p><b>Total:</b> {{cart.total}} TK</p>
+        <a href="{% url 'all_product' %}" class="btn btn-primary">Add Product</a>
+        <!-- <a href="{% url 'all_product' %}" class="btn btn-primary">Payment</a> -->
+    </div>
+    {% endblock %}
+</body>
+</html>
