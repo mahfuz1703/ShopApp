@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My orders</title>
+</head>
+<body>
+    {% block content %}
+    <div class="container">
+        <h1><b>My Orders</b></h1> <br>
+        {% if has_orders%}
+        {% for order in orders %}
+        <h3><b>Order ID: </b> {{order.id}}</h3>
+        <h3><b>Total: </b> {{order.total}} BDT</h3>
+        <h3><b>Order status: </b> {{order.order_status}}</h3>
+        <br> <br>
+        {% endfor %}
+        {% else %}
+        <h3>Right now you don't have an orders.</h3>
+        <a href="{% url 'all_product' %}" class="btn btn-primary">Products</a>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>

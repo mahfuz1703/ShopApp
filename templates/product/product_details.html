@@ -19,6 +19,24 @@
         {% else %}
         <p><b>Out of Stock</b></p>
         {% endif %}
+
+        <br> <br>
+        <h3>Reviews</h3>
+        {% for review in reviews %}
+
+        <p>{{ review.rating }} - {{ review.review }}</p>
+        <p>By {{ review.user.username }}</p>
+
+        {% endfor %}
+        <br>
+        <h3>Average Rating: {{ average_rating }}</h3>
+
+        <form method="post">
+        {% csrf_token %}
+            <input type="text" name="rating" value="3"> <br> <br>
+            <input type="text" name="review" value="Nice Product"> <br> <br>
+            <input type="submit" value="Review" class="btn btn-primary">
+        </form>
     </div>
     {% endblock %}
 </body>

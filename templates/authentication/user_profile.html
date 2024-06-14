@@ -11,12 +11,14 @@
     <div class="container">
         <div style="text-align: center;"><h1> <b>Profile</b></h1></div>
         <div>
-            <img src="{{user.photo.url}}" alt="{{user.name}}" width="200px" height="300px">
-            <h3><b>Username: </b>{{user.username}}</h3>
-            <h3><b>Email address: </b>{{user.email}}</h3>
-            <h3><b>Phone: </b>{{user.phone}}</h3>
-            <h3><b>Address: </b>{{user.address}}</h3>
-        </div>
+            <img src="{{profile.photo.url}}" alt="{{user.username}}" width="200px" height="200px" style="border-radius: 10px;"> <br> <br>
+            <h3><b>Username: </b>{{profile.user.username}}</h3>
+            <h3><b>Email address: </b>{{profile.user.email}}</h3>
+            <h3><b>Phone: </b>{{profile.phone}}</h3>
+            <h3><b>Address: </b>{{profile.address}}</h3>
+        </div> <br> <br>
+        <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+        <br><br>
     </div>
     {% endblock %}
 </body>

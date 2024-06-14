@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+</head>
+<body>
+    {%  block content %}
+    <div class="container">
+        
+
+        {% for item in items %}
+        <p>{{item.product.name}} x {{item.quantity}} = {% widthratio item.product.price 1 item.quantity %} TK</p>
+        {% endfor %}
+        <p><b>Total:</b> {{total}} TK</p>
+
+        <form action="" method="post">
+        {% csrf_token %}
+            <input type="text" name="address" id="" placeholder="Address" value="{{user.address}}"> <br> <br>
+            <input type="text" name="phone" id="" placeholder="Phone" value="{{user.phone}}"> <br> <br>
+            <input type="submit" value="Complete Order" class="btn btn-primary">
+        </form>
+
+        
+    </div>
+    {% endblock %}
+</body>
+</html>

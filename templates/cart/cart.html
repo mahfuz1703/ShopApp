@@ -17,8 +17,11 @@
             <a href="{% url 'delete_to_cart' item.product.id %}" class="btn btn-danger" title="Remove Cart">x</a>
         </p>
         {% endfor %}
-        <p><b>Total:</b> {{cart.total}} TK</p>
+        <p><b>Total:</b> {{user_cart.total}} TK</p>
         <a href="{% url 'all_product' %}" class="btn btn-primary">Add Product</a>
+        {% if has_items %}
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
+        {% endif %}
         <!-- <a href="{% url 'all_product' %}" class="btn btn-primary">Payment</a> -->
     </div>
     {% endblock %}

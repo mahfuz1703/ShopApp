@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from Cart.models import Order
+from .forms import UserProfileForm
+from. models import UserProfile
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your views here.
 def home(request):
@@ -54,7 +59,45 @@ def signout(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        return render(request, "authentication/user_profile.html", {'user':  request.user})
+        profile = request.user.userprofile
+        return render(request, "authentication/user_profile.html", {'profile':  profile})
     return redirect('signup')
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+def edit_profile(request):
+    try:
+        user_profile = request.user.userprofile
+    except UserProfile.DoesNotExist:
+        # If UserProfile doesn't exist, create a new one
+        user_profile = UserProfile.objects.create(user=request.user)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to the user's profile page
+    else:
+        form = UserProfileForm(instance=user_profile)
+    return render(request, 'authentication/edit_profile.html', {'form': form})
+
+
+def myorders(request):
+    if request.user.is_authenticated:
+        try:
+            orders = Order.objects.filter(user=request.user)
+            has_orders = orders.exists() 
+            # items = Order.items.all()
+        except Order.DoesNotExist:
+            return HttpResponse("Order not found")
+        
+        return render(request, "authentication/myorders.html", {'orders':orders, 'has_orders': has_orders})
+    else:
+        return redirect(signup)
+    
+
 
 

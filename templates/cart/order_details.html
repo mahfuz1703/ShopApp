@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order details</title>
+</head>
+<body>
+    {% block content%}
+    <div class="container">
+        
+
+        <h1><b>Order No:</b> {{order.id}} </h1>
+        {% for item in items %}
+        <p>{{item.product.name}} x {{item.quantity}} = {% widthratio item.product.price 1 item.quantity %} TK</p>
+        {% endfor %}
+        <p><b>Total:</b> {{total}} TK</p>
+        <p><b>Address:</b> {{order.address}} </p>
+        <p><b>Phone:</b> {{order.phone}} </p>
+        <p><b>Order time:</b> {{order.created_at}} </p>
+        <p><b>Status:</b> {{order.order_status}} </p>
+
+        
+    </div>
+    {% endblock %}
+</body>
+</html>
