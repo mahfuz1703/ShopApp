@@ -7,12 +7,14 @@ from .forms import UserProfileForm
 from. models import UserProfile
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
         return render(request, "home/home.html", {'user':  request.user})
     return redirect('signup')
+
 
 def signup(request):
     if  request.method == "POST":
@@ -29,7 +31,10 @@ def signup(request):
             # print(user)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                if request.user.is_superuser:
+                    return redirect(reverse('admin:index'))
+                else:
+                    return redirect('home')
             else:
                 return HttpResponse("User not found or incorrect credentials!!")
         else:

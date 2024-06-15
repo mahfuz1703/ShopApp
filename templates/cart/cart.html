@@ -12,9 +12,9 @@
         <h1>My Cart</h1>
         {% for item in items %}
         <p>{{item.product.name}} x {{item.quantity}} = {% widthratio item.product.price 1 item.quantity %} TK
-            <a href="{% url 'increase_quantity' item.product.id %}" class="btn btn-primary" title="Increase Quantity">+</a>
-            <a href="{% url 'decrease_quantity' item.product.id %}" class="btn btn-secondary" title="Decrease Quantity">-</a>
-            <a href="{% url 'delete_to_cart' item.product.id %}" class="btn btn-danger" title="Remove Cart">x</a>
+            <a href="{% url 'increase_quantity' item.id %}" class="btn btn-primary" title="Increase Quantity">+</a>
+            <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-secondary" title="Decrease Quantity">-</a>
+            <a href="{% url 'delete_to_cart' item.id %}" class="btn btn-danger" title="Remove Cart">x</a>
         </p>
         {% endfor %}
         <p><b>Total:</b> {{user_cart.total}} TK</p>
